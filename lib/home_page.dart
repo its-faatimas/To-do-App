@@ -42,27 +42,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget getBodyColumn() {
     return Container(
+
       child: Column(children: [
-        Expanded(
-          child: _colors(),
-          flex: 6,
+        SizedBox(height: 630,),
+        _colors(),
+       const SizedBox(
+          height: 10.0,
         ),
-        SizedBox(
-          height: 4.0,
-        ),
-        Expanded(
-          flex: 1,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: TextField(
-              keyboardType: TextInputType.text,
-              textInputAction: TextInputAction.unspecified,
-              controller: colorController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(12.0),
-                  ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: TextField(
+            keyboardType: TextInputType.text,
+            textInputAction: TextInputAction.unspecified,
+            controller: colorController,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(12.0),
                 ),
               ),
             ),
@@ -80,6 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
         (index) => InkWell(
           splashColor: Colors.grey,
           child: CircleAvatar(
+            radius: 25,
             backgroundColor: _colorList[index],
           ),
           onTap: () {
