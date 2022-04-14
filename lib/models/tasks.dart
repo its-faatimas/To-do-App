@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Tasks {
-//  final Color color;
+  Color? color;
+  String? title;
+
+  Tasks(this.color, this.title);
 }

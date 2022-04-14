@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/models/tasks.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key}) : super(key: key);
@@ -11,6 +12,7 @@ class _MyHomePageState extends State<MyHomePage> {
   TextEditingController colorController = TextEditingController();
 
   Color? _chooseColor;
+  List<Tasks> _tasksList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +36,40 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Container getBody() {
-    return Container(child: Column(children: [
-      ListView()
-    ]),);
+  Widget getBody() {
+    return SafeArea(child: getBodyColumn());
+  }
+
+  Widget getBodyColumn() {
+    return Container(
+      child: Column(children: [
+        Expanded(
+          child: _colors(),
+          flex: 6,
+        ),
+        SizedBox(
+          height: 4.0,
+        ),
+        Expanded(
+          flex: 1,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: TextField(
+              keyboardType: TextInputType.text,
+              textInputAction: TextInputAction.unspecified,
+              controller: colorController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12.0),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ]),
+    );
   }
 
   Widget _colors() {
@@ -56,24 +88,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
-  }
-
-  Widget getBodyColumn() {
-    return Column(children: [
-      Expanded(
-        child: _colors(),
-        flex: 1,
-      ),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: TextField(
-          keyboardType: TextInputType.text,
-          textInputAction: TextInputAction.done,
-          controller: colorController,
-          decoration: const InputDecoration(),
-        ),
-      ),
-    ]);
   }
 
   final List<Color> _colorList = [
